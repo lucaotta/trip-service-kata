@@ -27,6 +27,6 @@ std::list<Trip> TripService::GetTripsByUser( User *user )
     }
     else
     {
-        throw "UserNotLoggedInException";
+        throw UserNotLoggedInException();
     }
 }

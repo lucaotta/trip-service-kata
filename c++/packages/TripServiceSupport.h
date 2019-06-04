@@ -2,6 +2,10 @@
 #define TRIP_SERVICE_SUPPORT
 
 #include <list>
+#include <exception>
+
+class UserNotLoggedInException : virtual public std::runtime_error{
+};
 
 class Trip
 {
