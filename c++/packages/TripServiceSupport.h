@@ -2,9 +2,11 @@
 #define TRIP_SERVICE_SUPPORT
 
 #include <list>
-#include <exception>
+#include <stdexcept>
 
-class UserNotLoggedInException : virtual public std::runtime_error{
+class UserNotLoggedInException : public virtual std::runtime_error {
+public:
+    UserNotLoggedInException() : std::runtime_error("User not logged in") {}
 };
 
 class Trip
@@ -15,10 +17,11 @@ class User
 {
 public:
     inline User( int _id ):id(_id) {} ;
-    
-    inline std::list<User>& GetFriends() { return friends; }
+
+    inline std::list<User> GetFriends() { return friends; }
+    inline std::list<Trip> Trips() { return trips; }
+
     inline void AddFriend( User user ) { friends.push_back( user ); }
-    inline std::list<Trip>& Trips() { return trips; }
     inline void AddTrip( Trip trip ) { trips.push_back( trip ); }
 
     inline bool operator==( User& other ) { return (other.id==id); }
@@ -28,13 +31,6 @@ private:
     std::list<User> friends;
 };
 
-class TripService
-{
-public:
-    std::list<Trip> GetTripsByUser( User *user );
-  
-};
-
 
 class UserSession
 {
@@ -42,9 +38,9 @@ public:
     inline static UserSession* GetInstance()
     {
         if ( !oneUserSession ) { oneUserSession = new UserSession(); }
-        return oneUserSession;    
+        return oneUserSession;
     }
-    
+
     inline bool IsUserLoggedIn( User user )
     {
         throw "UserSession.IsUserLoggedIn() should not be called in an unit test";
@@ -53,7 +49,7 @@ public:
     {
         throw "UserSession.GetLoggedUser() should not be called in an unit test";
     }
-    
+
 private:
     static UserSession *oneUserSession;
     inline UserSession() {};
