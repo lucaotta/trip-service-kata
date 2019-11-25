@@ -2,6 +2,7 @@
 #include "packages/TripServiceSupport.h"
 #include <algorithm>
 
+// Defines the storage location for static UserSession::oneUserSession
 UserSession *UserSession::oneUserSession=0;
 
 std::list<Trip> TripService::GetTripsByUser( User *user )
@@ -11,7 +12,7 @@ std::list<Trip> TripService::GetTripsByUser( User *user )
     if ( loggedUser )
     {
         auto needle = std::find_if(begin(user->GetFriends()), end(user->GetFriends()), [&loggedUser](auto user) {
-            if (user == *loggedUser)
+            if (user == loggedUser)
                 return true;
             return false;
         });

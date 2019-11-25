@@ -11,20 +11,21 @@ public:
 
 class Trip
 {
+    // TODO: implement me
 };
 
 class User
 {
 public:
-    inline User( int _id ):id(_id) {} ;
+    User( int _id ):id(_id) {} ;
 
-    inline std::list<User> GetFriends() { return friends; }
-    inline std::list<Trip> Trips() { return trips; }
+    std::list<User> GetFriends() { return friends; }
+    std::list<Trip> Trips() { return trips; }
 
-    inline void AddFriend( User user ) { friends.push_back( user ); }
-    inline void AddTrip( Trip trip ) { trips.push_back( trip ); }
+    void AddFriend( User user ) { friends.push_back( user ); }
+    void AddTrip( Trip trip ) { trips.push_back( trip ); }
 
-    inline bool operator==( User& other ) { return (other.id==id); }
+    bool operator==( User& other ) { return (other.id==id); }
 private:
     int id;
     std::list<Trip> trips;
@@ -35,32 +36,36 @@ private:
 class UserSession
 {
 public:
-    inline static UserSession* GetInstance()
+    static UserSession* GetInstance()
     {
         if ( !oneUserSession ) { oneUserSession = new UserSession(); }
         return oneUserSession;
     }
 
-    inline bool IsUserLoggedIn( User user )
+    bool IsUserLoggedIn( User user )
     {
-        throw "UserSession.IsUserLoggedIn() should not be called in an unit test";
+        // TODO: implement me
+        return false;
     }
-    inline User* GetLoggedUser()
+    User* GetLoggedUser()
     {
-        throw "UserSession.GetLoggedUser() should not be called in an unit test";
+        // TODO: implement me
+        return nullptr;
     }
 
 private:
     static UserSession *oneUserSession;
-    inline UserSession() {};
+    // private constructor
+    UserSession() {};
 };
 
 class TripDAO
 {
 public:
-    inline static std::list<Trip> FindTripsByUser(User *user)
+    static std::list<Trip> FindTripsByUser(User *user)
     {
-        throw "TripDAO should not be invoked on an unit test.";
+        // TODO: implement me
+        return {};
     }
 };
 
