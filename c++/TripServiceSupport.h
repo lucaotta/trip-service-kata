@@ -17,13 +17,16 @@ class Trip
 class User
 {
 public:
+    // constructor
     User( int _id ):id(_id) {} ;
 
     std::list<User> GetFriends() { return friends; }
     std::list<Trip> Trips() { return trips; }
 
+    // Add a friend
     void AddFriend( User user ) { friends.push_back( user ); }
-    void AddTrip( Trip trip ) { trips.push_back( trip ); }
+    // Add a friend
+    void AddTrip( Trip trip ) { friends.push_back( trip ); }
 
     bool operator==( User& other ) { return (other.id==id); }
 private:

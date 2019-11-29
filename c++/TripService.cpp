@@ -1,5 +1,5 @@
 #include <list>
-#include "packages/TripServiceSupport.h"
+#include "TripServiceSupport.h"
 #include <algorithm>
 
 // Defines the storage location for static UserSession::oneUserSession
